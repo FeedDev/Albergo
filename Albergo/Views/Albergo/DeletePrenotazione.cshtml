@@ -1,0 +1,109 @@
+﻿@model Albergo.Models.Prenotazione
+
+@{
+    ViewBag.Title = "DeletePrenotazione";
+}
+
+<div class="divBackground">
+    <div class="container">
+        <br />
+        @using (Html.BeginForm())
+        {
+            
+            <p class="alert alert-danger">Sei sicuro di voler eliminare la prenotazione? la eliminazione sarà definitiva</p>
+            <input type="submit" class="btn btn-danger" name="delete" value="conferma eliminazione" />
+        }
+
+        <center class="Center3">
+            <div class="card CardGenerica p-3 text-white">
+                <div>
+                    <h2><a class="btn bottone text-white me-3" href="/Albergo/ListaPrenotazioni"><i class="fa-solid fa-hand-point-left"></i></a>Elimina Prenotazione</h2>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Camera.CodiceCamera)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Camera.CodiceCamera)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Cliente.CodiceFiscale)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Cliente.CodiceFiscale)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Tipologia.NomeTipologia)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Tipologia.NomeTipologia)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DataPrenotazione)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DataPrenotazione)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CodicePrenotazione)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CodicePrenotazione)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Anno)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Anno)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.InizioSoggiorno)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.InizioSoggiorno)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FineSoggiorno)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.FineSoggiorno)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Caparra)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Caparra)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Tariffa)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Tariffa)
+                        </dd>
+                    </dl>
+                </div>
+
+            </div>
+        </center>
+
+    </div>
+</div>

@@ -1,0 +1,167 @@
+﻿/* Set padding to keep content from hitting the edges */
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+:root {
+    --ciano: #6E79C4;
+    --blu: #0D1321;
+    --verde: #16DB93;
+    --giallo: #F7EC59;
+    --blu_scuro: #F7EC59;
+    --arancione: #CB793A;
+}
+.CardGenerica {
+    background-color: var(--ciano);
+    width: 25rem;
+}
+
+.Corpo {
+    overflow-y: auto;
+    max-height: calc(100vh - 135px);
+}
+
+.Corpo::-webkit-scrollbar {
+    display: none;
+}
+
+.Center {
+    background-image: url(/Content/img/Hotel.jpg);
+    background-position: center;
+    background-size: cover;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Center2 {
+    min-height: 35vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Center3 {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MainNavbar {
+    z-index: 5;
+    background-color: #6E79C4;
+    box-shadow: 0px 5px 5px #00000030;
+}
+
+.ActionLink {
+    color: white;
+}
+
+.titolo {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.bottone {
+    font-weight: 500;
+    color: white;
+    background-color: #FF9517;
+    transition: all 250ms;
+    box-shadow: 0px 3px 5px #00000030;
+}
+
+.bottone:hover {
+   filter: brightness(1.1);
+   background-color: #FF9517;
+   color: white;
+}
+
+.Tabella {
+    background-color: rgb(7,157,162);
+}
+
+.righe-tabella {
+    background-color: rgb(7,157,162);
+}
+
+.divBackground {
+    min-height: calc(100vh - 100px);
+    background-color: #1f2b79;
+}
+
+.borderTabella {
+    background-color: #CFF4FC;
+    padding: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.BottoneGenerico {
+    padding: 10px 25px;
+    font-weight: 700 !important;
+    background-color: var(--ciano);
+    color: #1f2b79;
+}
+
+.BottoneGenerico:hover {
+        filter: brightness(1.1);
+        background-color: var(--ciano);
+        color: #1f2b79;
+}
+
+.TabellaHome {
+    background-color: #6E79C4;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.Footer {
+    overflow: hidden;
+    min-height: 60px;
+    background-color: #252525;
+}
+
+
+.hr {
+    border-color: white;
+}
+
+
+#Conto {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.Prezzo {
+    text-shadow: 1px 1px 0px #ffffff;
+    color: #FF9517;
+    font-size: 35px;
+}
+
+#AppendGlobal {
+    width: 1250px;
+}

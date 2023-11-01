@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Albergo.Models.Camera>
+
+@{
+    ViewBag.Title = "ViewCamere";
+}
+<div class="divBackground">
+    <div class="container ">
+        <h2 class="ActionLink py-3">Lista delle camere</h2>
+
+        <p>
+            @Html.ActionLink("Crea nuova camera ", "CreateCamera", new { area = "" }, new { @class = "btn bottone" })
+        </p>
+
+        <div class="borderTabella TabellaHome">
+            <table class="table table-striped">
+                <tr>
+                    <th class="text-white">
+                        @Html.DisplayNameFor(model => model.CodiceCamera)
+                    </th>
+                    <th class="text-white">
+                        @Html.DisplayNameFor(model => model.Descrizione)
+                    </th>
+                    <th class="text-white">
+                        @Html.DisplayNameFor(model => model.Tipologia)
+                    </th>
+                    <th class="text-white">
+                        @Html.DisplayNameFor(model => model.Piano)
+                    </th>
+                    <th class="text-white">
+
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.Cancellato == false)
+                    {
+                        <tr>
+                            <td class ="text-white">
+                                @Html.DisplayFor(modelItem => item.CodiceCamera)
+                                </td>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.Descrizione)
+                            </td>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.Tipologia)
+                            </td>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.Piano)
+                            </td>
+                                <td>
+                                    <a class="btn btn-warning" href="/Albergo/EditCamera/@item.IdCamera"><i class="fa-solid fa-edit"></i></a>
+                                    <a class="btn btn-danger" href="/Albergo/DeleteCamera/@item.IdCamera"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                                <td>
+                                </td>
+</tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>

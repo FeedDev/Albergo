@@ -1,0 +1,44 @@
+﻿@model Albergo.Models.Servizio
+
+@{
+    ViewBag.Title = "DeleteServizio";
+}
+
+<div class="divBackground">
+    <div class="container">
+        <br />
+        @using (Html.BeginForm())
+        {
+            <p class="alert alert-danger">Sei sicuro di voler eliminare il servizio? la eliminazione sarà definitiva</p>
+            <input type="submit" class="btn btn-danger" name="delete" value="conferma eliminazione" />
+        }
+
+        <center class="Center3">
+            <div class="card CardGenerica p-3 text-white">
+                <div>
+                    <h2><a class="btn bottone text-white me-3" href="/Albergo/ViewServizi"><i class="fa-solid fa-hand-point-left"></i></a>Elimina Servizio</h2>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.NomeServizio)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.NomeServizio)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Prezzo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Prezzo) &euro;
+                        </dd>
+                    </dl>
+                </div>
+
+            </div>
+        </center>
+
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@model Albergo.Models.Camera
+
+@{
+    ViewBag.Title = "DeleteCamera";
+}
+
+<div class="divBackground">
+    <div class="container">
+        <br />
+        @using (Html.BeginForm())
+        {
+            <p class="alert alert-danger">Sei sicuro di voler eliminare la camera? la eliminazione sarà definitiva</p>
+            <input type="submit" class="btn btn-danger" name="delete" value="conferma eliminazione" />
+        }
+
+        <center class="Center3">
+            <div class="card CardGenerica p-3 text-white">
+                <div>
+                    <h2><a class="btn bottone text-white me-3" href="/Albergo/ViewCamere"><i class="fa-solid fa-hand-point-left"></i></a>Elimina Camera</h2>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CodiceCamera)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CodiceCamera)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Descrizione)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Descrizione)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Tipologia)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Tipologia)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Piano)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Piano)
+                        </dd>
+
+                    </dl>
+                </div>
+
+            </div>
+        </center>
+
+    </div>
+</div>
+

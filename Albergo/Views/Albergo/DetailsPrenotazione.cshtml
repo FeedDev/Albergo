@@ -1,0 +1,190 @@
+﻿@model Albergo.Models.Prenotazione
+
+@{
+    ViewBag.Title = "DetailsPrenotazione";
+}
+
+<div class="divBackground">
+    <div class="container ">
+        <a class="btn bottone text-white mt-3" href="/Albergo/EditPrenotazione/@Model.IdPrenotazione"> Modifica Prenotazione</a>
+
+        <center class="Center3">
+            <div class="card CardGenerica p-3 text-white">
+
+                <div class="form-horizontal">
+                    <h3 class="me-2"><a class="btn bottone text-white" href="/Albergo/Home"><i class="fa-solid fa-hand-point-left"></i></a> Dettagli Prenotazione</h3>
+                    <dl class="dl-horizontal">
+                        <div class="row  mt-4">
+                            <div class="col-6">
+                                <h6>
+                                    @Html.DisplayNameFor(model => model.Camera.CodiceCamera)
+                                </h6>
+                                <span>@Html.DisplayFor(model => model.Camera.CodiceCamera)</span>
+                            </div>
+                            <br />
+                            <div class="col-6">
+                                <h6>
+                                    @Html.DisplayNameFor(model => model.Cliente.CodiceFiscale)
+                                </h6>
+                                <span>@Html.DisplayFor(model => model.Cliente.CodiceFiscale)</span>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <h6>
+                                    @Html.DisplayNameFor(model => model.Tipologia.NomeTipologia)
+                                </h6>
+                                <span>@Html.DisplayFor(model => model.Tipologia.NomeTipologia)</span>
+                            </div>
+                            <br />
+                            <div class="col-6">
+                                <h6>
+                                    @Html.DisplayNameFor(model => model.DataPrenotazione)
+                                </h6>
+                                <span id="prenotazione"></span>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <h6>
+                                    @Html.DisplayNameFor(model => model.InizioSoggiorno)
+                                </h6>
+                                <span id="iniziosoggiorno"></span>
+                            </div>
+                            <br />
+                            <div class="col-6">
+                                <h6>
+                                    @Html.DisplayNameFor(model => model.FineSoggiorno)
+                                </h6>
+                                <span id="finesoggiorno"></span>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <h6>
+                                    @Html.DisplayNameFor(model => model.Caparra)
+                                </h6>
+                                <span>@Html.DisplayFor(model => model.Caparra)</span>
+                            </div>
+                            <br />
+                            <div class="col-6">
+                                <h6>
+                                    @Html.DisplayNameFor(model => model.Tariffa)
+                                </h6>
+                                <span>@Html.DisplayFor(model => model.Tariffa)</span>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </center>
+
+        <div class="borderTabella TabellaHome text-white">
+            <a class="btn bottone text-white mb-2" href="/Albergo/AddServizioPrenotazione/@Model.IdPrenotazione">Aggiungi servizio alla prenotazione</a>
+            <table class="table table-striped text-white">
+                <tr>
+                    <th class="text-white">
+                        Nome Servizio
+                    </th>
+                    <th class="text-white">
+                        Prezzo Unitario
+                    </th>
+                    <th class="text-white">
+                        Quantità
+                    </th>
+                    <th class="text-white">
+                        Data Servizio
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                @foreach (var item in Model.PivotPrenotazioneServizio)
+                {
+                    if (item.Cancellato == false)
+                    {
+                        <tr>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.Servizio.NomeServizio)
+                            </td>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.Servizio.Prezzo)
+                            </td>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.Quantità)
+                            </td>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.DataServizio)
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="/Albergo/DeleteServizioPrenotazione/@item.IdPivotPrenotazioneServizio"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <button class="btn bottone text-white mb-2" id="BottoneConto">Checkout</button>
+                <div id="Conto">
+                </div>
+
+
+            </div>
+            
+
+        </div>
+        <br />
+        <br />
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        let DataPrenotazione = "@Model.DataPrenotazione" ;
+        let InizioSoggiorno = "@Model.InizioSoggiorno";
+        let FineSoggiorno = "@Model.FineSoggiorno";
+
+
+            DataPrenotazione = DataPrenotazione.slice(0, 10);
+            InizioSoggiorno = InizioSoggiorno.slice(0, 10);
+           FineSoggiorno = FineSoggiorno.slice(0, 10);
+
+        $("#prenotazione").append(DataPrenotazione);
+        $("#iniziosoggiorno").append(InizioSoggiorno);
+        $("#finesoggiorno").append(FineSoggiorno);
+
+        $('#BottoneConto').click(function () {
+
+            $.ajax({
+                url: '@Url.Action("TotaleConto", "Albergo")',
+                type: 'GET',
+                data: { 'id': @Model.IdPrenotazione },
+                success: function (totale) {
+                    $('#Conto').html(
+                        'Totale della prenotazione da pagare: <span class="Prezzo">' + totale + ' &euro; </span>'
+                    )
+                }
+            })
+        })
+    })
+
+
+</script>

@@ -1,0 +1,64 @@
+﻿@model Albergo.Models.PivotPrenotazioneServizio
+
+@{
+    ViewBag.Title = "AddServizio";
+}
+
+<div class="divBackground">
+    <div class="container ">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <center class="Center3">
+                <div class="card CardGenerica p-3 text-white">
+
+                    <div class="form-horizontal">
+                        <h2><a class="btn bottone text-white me-3" href="/Albergo/DetailsPrenotazione/@Model.IdPrenotazione"><i class="fa-solid fa-hand-point-left"></i></a>Aggiungi Servizio</h2>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.IdPrenotazione)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdServizio, "Servizio", htmlAttributes: new { @class = "control-label" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("IdServizio", new SelectList(ViewBag.ListaServizi, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.IdServizio, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group d-flex justify-content-between">
+                            <a id="minus" onclick="minusFX()" class="btn d-flex align-items-center justify-content-center bottone text-white mb-3 mt-3"><i class="fa-solid fa-minus  px-1"></i></a>
+                            <div class="">
+                                @Html.LabelFor(model => model.Quantità, htmlAttributes: new { @class = "control-label mt-3" })
+                                @Html.EditorFor(model => model.Quantità, new { htmlAttributes = new { @class = "form-control", @readonly ="readonly", @id="input" } })
+                                @Html.ValidationMessageFor(model => model.Quantità, "", new { @class = "text-danger" })
+                            </div>
+                            <a id="plus" onclick="plusFX()" class="btn d-flex bottone align-items-center justify-content-center text-white mb-3 mt-3"><i class="fa-solid fa-plus px-1"></i></a>
+                        </div>
+                        
+                        <div class="form-group">
+                            
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Aggiungi Servizio" class="btn bottone text-white mb-3 mt-3" />
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </center>
+
+        }
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    let plus = document.getElementById("plus")    let minus = document.getElementById("minus")    function minusFX() {        console.log("minus")        let input = document.getElementById("input").value        if (parseInt(input) > 0) {            document.getElementById("input").value = parseInt(input) - 1        }    }    function plusFX() {        console.log("plus")        let input = document.getElementById("input").value        document.getElementById("input").value = parseInt(input) + 1    }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

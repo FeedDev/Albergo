@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Albergo.Models.Prenotazione>
+
+@{
+    ViewBag.Title = "ListaPrenotazioni";
+}
+<div class="divBackground">
+    <div class="container ">
+        <h2 class="ActionLink py-3">Lista delle prenotazioni</h2>
+
+        <p>
+            @Html.ActionLink("Crea nuova prenotazione", "CreatePrenotazione", new { area = "" }, new { @class = "btn bottone"})
+        </p>
+
+        <div class="borderTabella TabellaHome">
+            <table class="table table-striped">
+                <tr>
+                    <th class="text-white">
+                        @Html.DisplayNameFor(model => model.Camera.CodiceCamera)
+                    </th>
+                    <th class="text-white">
+                        @Html.DisplayNameFor(model => model.Cliente.CodiceFiscale)
+                    </th>
+                    <th class="text-white">
+                        @Html.DisplayNameFor(model => model.Tipologia.NomeTipologia)
+                    </th>
+                    <th class="text-white">
+                        @Html.DisplayNameFor(model => model.DataPrenotazione)
+                    </th>
+                    <th class="text-white">
+                        @Html.DisplayNameFor(model => model.InizioSoggiorno)
+                    </th>
+                    <th class="text-white">
+                        @Html.DisplayNameFor(model => model.FineSoggiorno)
+                    </th>
+                    <th class="text-white">
+                        @Html.DisplayNameFor(model => model.Caparra)
+                    </th>
+                    <th class="text-white">
+                        @Html.DisplayNameFor(model => model.Tariffa)
+                    </th>
+                    <th >
+
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+
+                    </th> 
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.Cancellato == false)
+                    {
+                        <tr>
+                            <td class="text-white"> 
+                                @Html.DisplayFor(modelItem => item.Camera.CodiceCamera)
+                            </td>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.Cliente.CodiceFiscale)
+                            </td>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.Tipologia.NomeTipologia)
+                            </td>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.DataPrenotazione)
+                            </td>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.InizioSoggiorno)
+                            </td>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.FineSoggiorno)
+                            </td>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.Caparra)
+                            </td>
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.Tariffa)
+                            </td>
+                            <td>
+                                <a class="btn btn-warning" href="/Albergo/EditPrenotazione/@item.IdPrenotazione"><i class="fa-solid fa-edit"></i></a>
+                            </td>
+                            <td>
+                                <a class="btn btn-success" href="/Albergo/AddServizio/@item.IdPrenotazione"><i class="fa-solid fa-plus"></i></a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="/Albergo/DeletePrenotazione/@item.IdPrenotazione"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

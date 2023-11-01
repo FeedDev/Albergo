@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm MainNavbar ">
+        <div class="container">
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1 d-flex">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="d-flex align-items-center"><a class="nav-link ActionLink titolo">Albergo Academy</a></li>
+                        <li class="d-flex align-items-center">@Html.ActionLink("Home", "Home", "Albergo", new { area = "" }, new { @class = "nav-link ActionLink" })</li>
+                        <li class="d-flex align-items-center">@Html.ActionLink("Lista Prenotazioni", "ListaPrenotazioni", "Albergo", new { area = "" }, new { @class = "nav-link ActionLink" })</li>
+                        <li class="d-flex align-items-center">@Html.ActionLink("Lista Camere", "ViewCamere", "Albergo", new { area = "" }, new { @class = "nav-link ActionLink" })</li>
+                        <li class="d-flex align-items-center">@Html.ActionLink("Lista Servizi", "ViewServizi", "Albergo", new { area = "" }, new { @class = "nav-link ActionLink " })</li>
+                        <li class="d-flex align-items-center" id="CountPensione"></li>
+                    }
+                    else
+                    {
+                        <li class="d-flex align-items-center"><a class="nav-link ActionLink titolo">Albergo Academy</a></li>
+                    }
+                </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Logout", "Logout", "Albergo", new { area = "" }, new { @class = "btn ActionLink bottone" })
+                }
+                else
+                {
+                    @Html.ActionLink("Login", "Login", "Albergo", new { area = "" }, new { @class = "btn ActionLink bottone" })
+                }
+            </div>
+        </div>
+    </nav>
+    <div class="">
+        <div class="Corpo">
+            @RenderBody()
+        </div>
+        <div class="Footer">
+            <footer class="container">
+                <hr class="hr" />
+                <p class="text-white">&copy; Albergo Academy</p>
+            </footer>
+        </div>
+        
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+
+ <script type="text/javascript">
+    $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("CountPensioni", "Albergo")',
+                type: 'GET',
+                success: function (n) {
+                    $('#CountPensione').html('<a class="ActionLink nav-link">Numero di pensioni complete: ' + n + '</a>')
+                }
+            });
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Albergo.Models.Prenotazione>
+
+@{
+    ViewBag.Title = "Home";
+}
+<div class="divBackground">
+    <div class="container d-flex justify-content-center align-items-center flex-column Center2">
+        <center class="Center2">
+            <div class="card CardGenerica">
+                <div class="card-body">
+
+                    <h2 class="text-white">Ricerca Prenotazioni</h2>
+
+
+                    <input type="text" id="InputRicerca" class="form-control" value="" />
+                    <button class="btn bottone mt-3" id="BottoneRicerca">Cerca prenotazioni</button>
+
+                </div>
+
+            </div>
+        </center>
+        <div id="tabellina" class="borderTabella d-none TabellaHome">
+            <table id="AppendGlobal" class="table TabellaHome table-striped text-white">
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#BottoneRicerca').click(function () {
+            //Svuotare
+            $('#AppendGlobal').empty();
+
+            var valoreInput = $('#InputRicerca').val();
+            console.log(valoreInput);
+
+            $.ajax({
+                url: '@Url.Action("RicercaPrenotazione", "Albergo")',
+                type: 'GET',
+                data: { 's': valoreInput },
+
+                success: function (listaPrenotazioni) {
+                    $('#tabellina').removeClass("d-none");
+                    $('#AppendGlobal').append(
+                        '<tr><th>Codice Fiscale</th>' +
+                        '<th>Tipologia</th>' +
+                        '<th>Data Prenotazione</th>' +
+                        '<th>Inizio Soggiorno</th>' +
+                        '<th>Fine Soggiorno</th>' +
+                        '<th>Caparra</th>' +
+                        '<th>Tariffa</th>' +
+                        '<th>Codice Camera</th><th></th></tr>'
+                    )
+                    $.each(listaPrenotazioni, function (index, value) {
+
+                        $('#AppendGlobal').append(
+                            '<tr><td>' + value.CodiceFiscale + '</td>' +
+                            '<td>' + value.Tipologia + '</td>' +
+                            '<td>' + value.DataPrenotazione + '</td>' +
+                            '<td>' + value.InizioSoggiorno + '</td>' +
+                            '<td>' + value.FineSoggiorno + '</td>' +
+                            '<td>' + value.Caparra + '</td>' +
+                            '<td>' + value.Tariffa + '</td>' +
+                            '<td>' + value.CodiceCamera + '</td>' +
+                            '<td>' + '<a class="btn btn-warning text-white" href="/Albergo/DetailsPrenotazione/' + value.IdPrenotazione +'"><i class="fa-solid fa-edit"></i></a>' + '</td></tr>'
+                        )
+                    })
+                }
+
+            });
+        })
+    })
+            </script>
